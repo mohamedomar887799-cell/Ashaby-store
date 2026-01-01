@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>الحساب</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>متجري</h1>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="products.html">المنتجات</a>
+            <a href="cart.html">السلة</a>
+            <a href="account.html">الحساب</a>
+            <a href="login.html">تسجيل الدخول</a>
+        </nav>
+    </header>
+    <div class="main">
+        <h2>حسابي</h2>
+        <div id="user-info"></div>
+        <button onclick="logout()">تسجيل خروج</button>
+    </div>
+    <footer>&copy; 2023 متجري الإلكتروني</footer>
+    <script src="script.js"></script>
+    <script>
+        const user = getCurrentUser();
+        if (user) {
+            const users = getUsers();
+            const currentUser = users.find(u => u.username === user);
+            document.getElementById('user-info').innerHTML = `
+                <p>مرحباً، ${user}!</p>
+                <h3>الطلبات السابقة:</h3>
+                <ul>${currentUser.orders.map(order => `<li>${order}</li>`).join('') || '<li>لا توجد طلبات</li>'}</ul>
+            `;
+        } else {
+            document.getElementById('user-info').innerHTML = '<p>يرجى تسجيل الدخول أولاً.</p>';
+        }
+    </script>
+</body>
+</html>

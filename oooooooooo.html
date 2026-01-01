@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Ashaby store</title>
+        <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>متجري</h1>
+        <nav>
+            <a href="1000.html">الرئيسية</a>
+            <a href="5055.html">المنتجات</a>
+            <a href="2000.html">السلة</a>
+            <a href="4000.html">الحساب</a>
+            <a href="3000.html">تسجيل الدخول</a>
+        </nav>
+        <div class="search">
+            <input type="text" id="search" placeholder="ابحث عن منتج...">
+            <button onclick="window.location.href='products.html?search=' + document.getElementById('search').value">بحث</button>
+        </div>
+    </header>
+    <div class="main">
+        <h2>عروض مميزة</h2>
+        <div class="products" id="featured"></div>
+    </div>
+    <footer>&copy; 2023 متجري الإلكتروني</footer>
+    <script src="script.js"></script>
+    <script>
+        // عرض منتجات مميزة
+        const featured = document.getElementById('featured');
+        products.slice(0, 3).forEach(p => {
+            featured.innerHTML += `
+                <div class="product">
+                    <img src="${p.image}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <p>${p.price} ريال</p>
+                    <button onclick="addToCart(${p.id})">أضف إلى السلة</button>
+                </div>
+            `;
+        });
+    </script>
+
+    <a href="5055.html"> and</a>
+    <a href="1000.html">and2</a>
+    <a href="2000.html">and 3</a>
+    <a href="3000.html">and4</a>
+    <a href="4000.html">and5</a>
+    <script src="script2.js"></script>
+</body>
+</html>
