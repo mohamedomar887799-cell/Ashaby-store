@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تفاصيل المنتج</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>متجري</h1>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="products.html">المنتجات</a>
+            <a href="cart.html">السلة</a>
+            <a href="account.html">الحساب</a>
+            <a href="login.html">تسجيل الدخول</a>
+        </nav>
+    </header>
+    <div class="main" id="product-detail"></div>
+    <footer>&copy; 2023 متجري الإلكتروني</footer>
+    <script src="script.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const product = products.find(p => p.id == id);
+        if (product) {
+            document.getElementById('product-detail').innerHTML = `
+                <img src="${product.image}" alt="${product.name}" style="width:300px;">
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <p>السعر: ${product.price} ريال</p>
+                <button onclick="addToCart(${product.id})">أضف إلى السلة</button>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>المنتجات</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>متجري</h1>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="products.html">المنتجات</a>
+            <a href="cart.html">السلة</a>
+            <a href="account.html">الحساب</a>
+            <a href="login.html">تسجيل الدخول</a>
+        </nav>
+        <div class="search">
+            <input type="text" id="search" placeholder="ابحث...">
+            <button onclick="filterProducts()">تصفية</button>
+        </div>
+    </header>
+
+
+
+
+
+
+
+    <div class="main">
+        <h2>جميع المنتجات</h2>
+        <div class="products" id="product-list"></div>
+    </div>
+    <footer>&copy; 2023 متجري الإلكتروني</footer>
+    <script src="script.js"></script>
+    <script>
+        let currentProducts = products;
+        function displayProducts(list) {
+            const container = document.getElementById('product-list');
+            container.innerHTML = '';
+            list.forEach(p => {
+                container.innerHTML += `
+                    <div class="product">
+                        <img src="${p.image}" alt="${p.name}">
+                        <h3><a href="product-detail.html?id=${p.id}">${p.name}</a></h3>
+                        <p>${p.price} ريال</p>
+                        <button onclick="addToCart(${p.id})">أضف إلى السلة</button>
+                    </div>
+                `;
+            });
+        }
+        function filterProducts() {
+            const query = document.getElementById('search').value;
+            currentProducts = searchProducts(query);
+            displayProducts(currentProducts);
+        }
+        displayProducts(products);
+    </script>
+</body>
+</html>

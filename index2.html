@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>السلة</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>متجري</h1>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="products.html">المنتجات</a>
+            <a href="cart.html">السلة</a>
+            <a href="account.html">الحساب</a>
+            <a href="login.html">تسجيل الدخول</a>
+        </nav>
+    </header>
+    <div class="main">
+        <h2>سلة التسوق</h2>
+        <div id="cart-items"></div>
+        <p>الإجمالي: <span id="total">0</span> ريال</p>
+        <button onclick="checkout()">إتمام الشراء</button>
+    </div>
+    <footer>&copy; 2023 متجري الإلكتروني</footer>
+    <script src="script.js"></script>
+    <script>
+        function displayCart() {
+            const cart = getCart();
+            const container = document.getElementById('cart-items');
+            let total = 0;
+            container.innerHTML = '';
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name} (x${item.quantity})</span>
+                        <span>${item.price * item.quantity} ريال</span>
+                        <button onclick="removeFromCart(${item.id})">إزالة</button>
+                    </div>
+                `;
+            });
+            document.getElementById('total').textContent = total;
+        }
+        function removeFromCart(id) {
+            const cart = getCart().filter(item => item.id != id);
+            saveCart(cart);
+            displayCart();
+        }
+        function checkout() {
+            if (!getCurrentUser()) {
+                alert('يرجى تسجيل الدخول أولاً!');
+                window.location.href = 'login.html';
+                return;
+            }
+            alert('تم إتمام الشراء! (محاكاة)');
+            saveCart([]);
+            displayCart();
+        }
+        displayCart();
+    </script>
+</body>
+</html>
